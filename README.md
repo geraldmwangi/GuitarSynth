@@ -9,10 +9,15 @@ libjack, aubio
 
 Compile:
 I suggest an out-of-source build:
+
 cd /parent/of/path/to/where-you-cloned-guitarsynth/
+
 mkdir build
+
 cd build
+
 qmake ../GuitarSynth/GuitarSynth2.pro
+
 make
 
 That's it you should have am executable GuitarSynth2.
