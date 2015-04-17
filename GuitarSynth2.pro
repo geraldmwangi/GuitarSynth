@@ -27,8 +27,7 @@ HEADERS  += mainwindow.h \
     sinussynth.h \
     squaresynth.h \
     synthbase.h \
-    synthcontrol.h \
-    widget.h
+    synthcontrol.h
 
 FORMS    += mainwindow.ui \
     SynthBase.ui
