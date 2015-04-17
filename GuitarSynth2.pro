@@ -32,3 +32,6 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     SynthBase.ui
 
+OTHER_FILES += \
+    README.md
+
