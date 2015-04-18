@@ -158,7 +158,12 @@ int GSEngine::process(jack_nframes_t frames, void *arg)
     if(getMagnitude(frames,in)>1)
     {
         for(int i=0;i<mInstance->mSynths.size();i++)
+        {
             mInstance->mSynths[i]->process(frames,out,freq);
+
+        }
+        for(int f=0;f<frames;f++)
+            out[f]*=mInstance->mOutputGain;
     }
 //    memcpy(out,mInstance->mOutBuf,frames*sizeof(jack_default_audio_sample_t));
     mInstance->sendFrequence(freq);
@@ -184,7 +189,7 @@ void GSEngine::rectifyIn(int frames,float *in)
 {
     for(int i=0;i<frames;i++)
     {
-        mInBuf[i]=(in[i]+fabs(in[i]))/2;
+        mInBuf[i]=mInputGain*(in[i]+fabs(in[i]))/2;
     }
 }
 

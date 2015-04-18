@@ -65,6 +65,8 @@ void MainWindow::InitSignalSlots()
     QObject::connect(ui->InputVol,SIGNAL(valueChanged(int)),mEngine,SLOT(setInputGain(int)));
 
     QObject::connect(ui->OutputVol,SIGNAL(valueChanged(int)),mEngine,SLOT(setOutputGain(int)));
+    ui->InputVol->setValue(99);
+    ui->OutputVol->setValue(99);
 }
 
 QWidget * MainWindow::getSynthArea()
