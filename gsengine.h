@@ -57,8 +57,8 @@ signals:
     void freqChanged(float val);
 
 public slots:
-    void setInputGain(float val);
-    void setOutputGain(float val);
+    void setInputGain(int val);
+    void setOutputGain(int val);
 private:
 
     float mInputGain;

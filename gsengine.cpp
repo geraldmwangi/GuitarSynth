@@ -88,15 +88,17 @@ void GSEngine::StopEngine()
 
 
 
-void GSEngine::setInputGain(float val)
+void GSEngine::setInputGain(int val)
 {
-    mInputGain=val;
+    mInputGain=((float)val/100.0f);
+
 
 }
 
-void GSEngine::setOutputGain(float val)
+void GSEngine::setOutputGain(int val)
 {
-    mOutputGain=val;
+    mOutputGain=((float)val/100.0f);
+
 }
 
 void GSEngine::addSynth(SynthBase *synth)
