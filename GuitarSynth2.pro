@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = GuitarSynth2
 TEMPLATE = app
-LIBS += -lclam_qtmonitors -lclam_processing -lclam_audioio -lclam_core -ljack -laubio
+LIBS += -ljack -laubio
 
 SOURCES += main.cpp\
         mainwindow.cpp \
