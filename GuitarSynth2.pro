@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     sinussynth.cpp \
     squaresynth.cpp \
     synthbase.cpp \
-    synthcontrol.cpp
+    synthcontrol.cpp \
+    sawsynth.cpp
 
 HEADERS  += mainwindow.h \
     gausssynth.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     sinussynth.h \
     squaresynth.h \
     synthbase.h \
-    synthcontrol.h
+    synthcontrol.h \
+    sawsynth.h
 
 FORMS    += mainwindow.ui \
     SynthBase.ui

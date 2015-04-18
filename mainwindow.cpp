@@ -19,6 +19,7 @@ This file is part of GuitarSynth2.
 #include "squaresynth.h"
 #include "sinussynth.h"
 #include "gausssynth.h"
+#include <sawsynth.h>
 #include <QVBoxLayout>
 #include <strstream>
 MainWindow::MainWindow(QWidget *parent) :
@@ -38,6 +39,8 @@ MainWindow::MainWindow(QWidget *parent) :
     InitSignalSlots();
     mEngine->addSynth(new SinusSynth(ui->SynthArea->widget()));
     mEngine->addSynth(new SinusSynth(ui->SynthArea->widget()));
+    mEngine->addSynth(new SawSynth(ui->SynthArea->widget()));
+    mEngine->addSynth(new SawSynth(ui->SynthArea->widget()));
     mEngine->addSynth(new SquareSynth(ui->SynthArea->widget()));
 
     mEngine->addSynth(new SquareSynth(ui->SynthArea->widget()));
