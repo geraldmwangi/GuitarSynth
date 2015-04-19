@@ -37,7 +37,8 @@ SynthBase::SynthBase(QWidget* parent,QString name) :
     //InitBaseSynth();
     mSamplerate=0;
     mBufferSize=0;
-
+    mWaveTable=0;
+    mWindow=0;
 
     transposefactor=1;
     curFreq=BASE_FREQ;
@@ -49,8 +50,10 @@ SynthBase::SynthBase(QWidget* parent,QString name) :
 
 SynthBase::~SynthBase()
 {
-    delete [] mWaveTable;
-    delete [] mWindow;
+    if(mWaveTable)
+        delete [] mWaveTable;
+    if(mWindow)
+        delete [] mWindow;
     delete ui;
 }
 
