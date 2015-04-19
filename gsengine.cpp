@@ -140,23 +140,24 @@ int GSEngine::process(jack_nframes_t frames, void *arg)
     fvec_t Buf;
 
     //Buf.channels=1;
-    Buf.data=mInstance->mInBuf;
-    Buf.length=frames;
-    float freq;
-    fvec_t* freqbuf=new_fvec(1);
-    aubio_pitch_do(mInstance->mPitchDetector,&Buf,freqbuf);
-    freq=freqbuf->data[0];
-    del_fvec(freqbuf);
-//    freq=(freq+mInstance->lastfreq)/2;
-    freq=floor(freq);
-    if(freq<0)
-        freq=0;
+
 
 
     memset(out,0,frames*sizeof(jack_default_audio_sample_t));
 
     if(getMagnitude(frames,in)>1)
     {
+        Buf.data=mInstance->mInBuf;
+        Buf.length=frames;
+        float freq;
+        fvec_t* freqbuf=new_fvec(1);
+        aubio_pitch_do(mInstance->mPitchDetector,&Buf,freqbuf);
+        freq=freqbuf->data[0];
+        del_fvec(freqbuf);
+    //    freq=(freq+mInstance->lastfreq)/2;
+        freq=floor(freq);
+        if(freq<0)
+            freq=0;
         for(int i=0;i<mInstance->mSynths.size();i++)
         {
             mInstance->mSynths[i]->process(frames,out,freq);
@@ -164,10 +165,11 @@ int GSEngine::process(jack_nframes_t frames, void *arg)
         }
         for(int f=0;f<frames;f++)
             out[f]*=mInstance->mOutputGain;
+        mInstance->sendFrequence(freq);
     }
-//    memcpy(out,mInstance->mOutBuf,frames*sizeof(jack_default_audio_sample_t));
-    mInstance->sendFrequence(freq);
-//    mInstance->lastfreq=freq;
+//    else
+//        mInstance->sendFrequence(0);
+
     return 0;
 }
 
