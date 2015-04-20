@@ -26,14 +26,14 @@ void SquareSynth::InitSynth()
 {
 
 
-    float steps=mWaveTableSize/4*radius;
+    int steps=floor(mWaveTableSize/4*radius);
 
     for(int i=0;i<steps;i++)
     {
         mWaveTable[i]=1.0f-(1.0f-i/steps)*radius;
         mWaveTable[i+mWaveTableSize/2]=-mWaveTable[i];
     }
-    for(int i=steps;i<=mWaveTableSize/2-steps;i++)
+    for(int i=steps;i<mWaveTableSize/2-steps;i++)
     {
         mWaveTable[i]=1;
         mWaveTable[i+mWaveTableSize/2]=-mWaveTable[i];

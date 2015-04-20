@@ -28,8 +28,11 @@ GSEngine::GSEngine(QObject *parent) :
     QObject(parent)
 {
     mInstance=this;
+    mInBuf=0;
+    mOutBuf=0;
     InitNetwork();
     lastfreq=0;
+
 
 }
 
