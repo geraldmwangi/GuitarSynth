@@ -26,7 +26,6 @@ void GaussSynth::InitSynth()
 {
     float sd=(mWaveTableSize-1)/(2.0f*sdfactor);
     sd=sd*sd;
-    float norm=0;
     float mu=(mWaveTableSize-1)/2.0f;
 
     for(int i=0;i<mWaveTableSize;i++)

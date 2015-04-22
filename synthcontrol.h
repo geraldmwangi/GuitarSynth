@@ -18,8 +18,7 @@ This file is part of GuitarSynth2.
     */
 #include <QObject>
 #include <QLabel>
-#include <QtWidgets/QDial>
-//#include <CLAM/qtmonitors/QSynthKnob.hxx>
+#include <QDial>
 
 
 

@@ -50,7 +50,8 @@ GSEngine::~GSEngine()
 
 void GSEngine::InitNetwork()
 {
-    mClient=jack_client_new("GuitarSynth");
+    mClient=jack_client_open("GuitarSynth",JackNullOption,0);
+
     if(mClient==0)
         this->errorMessage("Could not initialize Jack");
 
@@ -125,8 +126,9 @@ void GSEngine::errorMessage(std::string err)
 
 GSEngine * GSEngine::getInstance()
 {
-    if(mInstance=0)
+    if(mInstance==0)
         mInstance=new GSEngine();
+    return mInstance;
 }
 
 int GSEngine::process(jack_nframes_t frames, void *arg)
@@ -166,7 +168,7 @@ int GSEngine::process(jack_nframes_t frames, void *arg)
             mInstance->mSynths[i]->process(frames,out,freq);
 
         }
-        for(int f=0;f<frames;f++)
+        for(jack_nframes_t f=0;f<frames;f++)
             out[f]*=mInstance->mOutputGain;
         mInstance->sendFrequence(freq);
     }
@@ -184,7 +186,7 @@ void GSEngine::sendFrequence(float val)
 float GSEngine::getMagnitude(jack_nframes_t frames, float *buffer)
 {
     float mag=0;
-    for(int i=0;i<frames;i++)
+    for(jack_nframes_t i=0;i<frames;i++)
         mag+=buffer[i]*buffer[i];
     mag=sqrt(mag);
     return mag;
