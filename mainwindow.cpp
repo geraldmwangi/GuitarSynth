@@ -21,7 +21,7 @@ This file is part of GuitarSynth2.
 #include "gausssynth.h"
 #include <sawsynth.h>
 #include <QVBoxLayout>
-#include <strstream>
+
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWindow)
@@ -76,7 +76,7 @@ QWidget * MainWindow::getSynthArea()
 
 void MainWindow::updateFreqLabel(float val)
 {
-    strstream t;
-    t<<val<<std::endl;
-    ui->freqLab->setText(QString::fromStdString(t.str()));
+    QString t;
+    t.setNum(val);
+    ui->freqLab->setText(t);
 }
