@@ -76,7 +76,7 @@ private:
     float* mOutBuf;
     jack_port_t *mInput_port;
     jack_port_t *mOutput_port;
-
+    fvec_t* mFreqBuf;
     jack_port_t *mMidiOut;
     jack_client_t *mClient;
     aubio_pitch_t* mPitchDetector;

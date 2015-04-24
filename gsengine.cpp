@@ -31,6 +31,7 @@ GSEngine::GSEngine(QObject *parent) :
     mInBuf=0;
     mOutBuf=0;
     mLowPassBuff=0;
+    mFreqBuf=new_fvec(1);
     InitNetwork();
     lastfreq=0;
     mDelayin[0]=0;
@@ -55,6 +56,7 @@ GSEngine::~GSEngine()
     mOutBuf=0;
     if(mLowPassBuff)
         delete [] mLowPassBuff;
+    del_fvec(mFreqBuf);
 
 }
 
@@ -170,11 +172,10 @@ int GSEngine::process(jack_nframes_t frames, void *arg)
         Buf.data=mInstance->mInBuf;
         Buf.length=frames;
         float freq;
-        fvec_t* freqbuf=new_fvec(1);
-        aubio_pitch_do(mInstance->mPitchDetector,&Buf,freqbuf);
-        freq=freqbuf->data[0];
-        del_fvec(freqbuf);
-    //    freq=(freq+mInstance->lastfreq)/2;
+
+        aubio_pitch_do(mInstance->mPitchDetector,&Buf,mInstance->mFreqBuf);
+        freq=mInstance->mFreqBuf->data[0];
+
         freq=floor(freq);
         if(freq<0)
             freq=0;
