@@ -70,15 +70,24 @@ private:
 
 
     void rectifyIn(int frames,float* in);
+    void lowpassIn(int frames,jack_default_audio_sample_t* in);
 
     float* mInBuf;
     float* mOutBuf;
     jack_port_t *mInput_port;
     jack_port_t *mOutput_port;
+
     jack_port_t *mMidiOut;
     jack_client_t *mClient;
     aubio_pitch_t* mPitchDetector;
     float lastfreq;
+
+    float mDelayin[2];
+    float mDelayout[2];
+    float mCuttOfFreq;
+    float mDampingFactor;
+    jack_default_audio_sample_t* mLowPassBuff;
+
 
 
 
